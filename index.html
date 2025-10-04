@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="naruto">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Anime Productivity Hub</title>
+    <meta name="description" content="Naruto and Jujutsu Kaisen inspired productivity hub with to-do list, timer, and day scheduler." />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
+
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="app-header">
+      <div class="brand">
+        <span class="logo" aria-hidden="true">🍥</span>
+        <h1>Anime Productivity Hub</h1>
+        <span class="logo-alt" aria-hidden="true">🔮</span>
+      </div>
+      <div class="theme-toggle" role="group" aria-label="Theme toggle">
+        <button id="theme-naruto" class="toggle active" aria-pressed="true" title="Switch to Naruto theme">Naruto</button>
+        <button id="theme-jjk" class="toggle" aria-pressed="false" title="Switch to Jujutsu Kaisen theme">JJK</button>
+      </div>
+    </header>
+
+    <main class="grid">
+      <!-- To-Do List -->
+      <section class="card" aria-labelledby="todo-title">
+        <div class="card-header">
+          <h2 id="todo-title">To‑Do List</h2>
+          <div class="card-actions">
+            <button id="todo-clear-completed" class="ghost" title="Clear completed">Clear Completed</button>
+          </div>
+        </div>
+        <form id="todo-form" class="row" autocomplete="off">
+          <input id="todo-input" type="text" placeholder="Add a new task…" aria-label="New task" />
+          <button type="submit" class="primary">Add</button>
+        </form>
+        <ul id="todo-list" class="todo-list" aria-live="polite"></ul>
+        <div class="todo-footer">
+          <span id="todo-count">0 items</span>
+          <div class="filters" role="tablist" aria-label="Filter tasks">
+            <button data-filter="all" class="chip active" role="tab" aria-selected="true">All</button>
+            <button data-filter="active" class="chip" role="tab" aria-selected="false">Active</button>
+            <button data-filter="completed" class="chip" role="tab" aria-selected="false">Completed</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Timer -->
+      <section class="card" aria-labelledby="timer-title">
+        <div class="card-header">
+          <h2 id="timer-title">Timer</h2>
+          <div class="card-actions presets">
+            <button class="chip" data-preset="pomodoro" title="25:00">Pomodoro</button>
+            <button class="chip" data-preset="short" title="5:00">Short Break</button>
+            <button class="chip" data-preset="long" title="15:00">Long Break</button>
+          </div>
+        </div>
+        <div class="timer-display">
+          <div class="time" id="timer-time" aria-live="polite">25:00</div>
+          <div class="timer-controls">
+            <label class="num-input">
+              <span>Minutes</span>
+              <input type="number" id="timer-minutes" min="1" max="240" value="25" />
+            </label>
+            <div class="buttons">
+              <button id="timer-start" class="primary">Start</button>
+              <button id="timer-pause" class="ghost">Pause</button>
+              <button id="timer-reset" class="ghost">Reset</button>
+            </div>
+          </div>
+        </div>
+        <progress id="timer-progress" value="0" max="100" aria-label="Timer progress"></progress>
+        <label class="checkbox">
+          <input id="timer-sound" type="checkbox" checked />
+          <span>Sound on finish</span>
+        </label>
+      </section>
+
+      <!-- Day Scheduler -->
+      <section class="card" aria-labelledby="scheduler-title">
+        <div class="card-header">
+          <h2 id="scheduler-title">Day Scheduler</h2>
+          <div class="card-actions">
+            <input type="date" id="schedule-date" />
+            <button id="schedule-today" class="ghost">Today</button>
+            <button id="schedule-clear" class="ghost danger">Clear Day</button>
+          </div>
+        </div>
+        <div id="schedule-grid" class="schedule-grid" aria-live="polite"></div>
+      </section>
+    </main>
+
+    <footer class="app-footer">
+      <span>Inspired by Naruto and Jujutsu Kaisen</span>
+    </footer>
+
+    <script src="./app.js" defer></script>
+  </body>
+</html>
